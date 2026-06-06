@@ -1,6 +1,7 @@
 from pathlib import Path
 from datetime import datetime
 import json
+import re
 from jinja2 import Environment, FileSystemLoader
 from playwright.sync_api import sync_playwright
 
@@ -40,7 +41,17 @@ FILTERS = {
     "clean_url": clean_url,
 }
 
-# ── Core ───────────────────────────────────────────────────────────────────
+# ── Helpers ────────────────────────────────────────────────────────────────
+def slugify_title(text: str) -> str:
+    """Converts text to Title Case, removes special characters, and swaps spaces for hyphens."""
+    if not text:
+        return ""
+    # Strip whitespace and capitalize the first letter of each word
+    s = text.strip().title()
+    s = re.sub(r'[\s_]+', '-', s)  # Replace spaces/underscores with a single hyphen
+    s = re.sub(r'[^\w\-]', '', s)   # Strip out punctuation
+    return s
+
 def _load_json(filename: str) -> dict:
     path = DATA / filename
     if not path.exists():
@@ -69,15 +80,26 @@ def export_pdf(html: str, out: Path) -> None:
         finally:
             browser.close()
 
+# ── Core ───────────────────────────────────────────────────────────────────
 def main() -> None:
     OUTPUT.mkdir(exist_ok=True)
 
     contact, resume = load_data()
     html            = build_html(contact, resume)
 
-    stamp    = datetime.now().strftime("%b-%d-%Y_%I-%M-%S-%p")
-    html_out = OUTPUT / f"Resume_{stamp}.html"
-    pdf_out  = OUTPUT / f"Resume_{stamp}.pdf"
+    # 1. Pull only the target company metadata field
+    meta    = resume.get("meta", {})
+    company = slugify_title(meta.get("target_company"))
+
+    # 2. Set up the dynamic context token
+    context_str = f"_{company}" if company else ""
+
+    # 3. Create the timestamp string using your original format
+    stamp = datetime.now().strftime("%b-%d-%Y_%I-%M-%S-%p")
+
+    # 4. Format final file names using only "Resume", target company, and the timestamp
+    html_out = OUTPUT / f"Resume{context_str}_{stamp}.html"
+    pdf_out  = OUTPUT / f"Resume{context_str}_{stamp}.pdf"
 
     html_out.write_text(html, encoding="utf-8")
     print(f"HTML → {html_out}  (open in browser to preview)")

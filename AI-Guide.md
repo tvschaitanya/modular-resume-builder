@@ -20,7 +20,7 @@ This tool takes two JSON files and builds a clean, ATS-friendly PDF resume:
 - `data/contact.json` covers personal info like name, email, phone, and links
 - `data/resume.json` covers resume content like skills, experience, projects, education, and certifications
 
-The user runs one command (`./run.sh`) and gets a timestamped HTML and PDF output. Your job is to produce a correct, tailored `resume.json` (and optionally `contact.json`) for them.
+The user runs one command (`./quick-run.sh`) and gets a timestamped HTML and PDF output. Your job is to produce a correct, tailored `resume.json` (and optionally `contact.json`) for them.
 
 ---
 
@@ -92,6 +92,11 @@ Follow the schema and rules below precisely.
 
 ```json
 {
+  "meta": {
+    "target_company": "string — name of the company you are applying to",
+    "target_role": "string — exact job title from the JD"
+  },
+
   "section_order": [
     "summary",
     "skills",
@@ -171,6 +176,12 @@ Follow the schema and rules below precisely.
 ---
 
 ## Rules for Writing resume.json
+
+### meta
+
+- Always populate `target_company` and `target_role` from the JD before doing anything else
+- Use the exact job title from the JD for `target_role`, not a paraphrased version
+- This field is for tracking purposes only and does not appear on the rendered resume
 
 ### section_order
 
@@ -273,11 +284,12 @@ Do not output partial JSON. Always output the full file so the user can drop it 
 1. Extract keywords and priorities from the JD
 2. Run keyword gap analysis and output what is present, what is misworded, and what is missing
 3. Ask the user about missing keywords before proceeding
-4. Rewrite the summary to match JD seniority and keywords
-5. Reorder or trim skills to surface JD-relevant ones first
-6. Rewrite 1 to 2 bullets per role to mirror JD language where experience supports it
-7. Adjust section_order if needed
-8. Output a brief changelog and then the full updated resume.json
+4. Populate `meta` with `target_company` and `target_role` from the JD
+5. Rewrite the summary to match JD seniority and keywords
+6. Reorder or trim skills to surface JD-relevant ones first
+7. Rewrite 1 to 2 bullets per role to mirror JD language where experience supports it
+8. Adjust section_order if needed
+9. Output a brief changelog and then the full updated resume.json
 
 ---
 

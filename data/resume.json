@@ -1,4 +1,9 @@
 {
+  "meta": {
+    "target_company": "Stripe",
+    "target_role": "Senior Backend Engineer"
+  },
+
   "section_order": [
     "summary",
     "skills",

@@ -16,7 +16,7 @@ This tool takes a different approach — your content lives in a plain JSON file
 
 `AI-Guide.md` at the root contains a prompt you can drop into any AI — Claude, ChatGPT, whatever you use. It understands the project structure, the JSON schema, and ATS requirements for 2026 tech roles.
 
-The intended flow: give the AI the guide + your master `resume.json` + the job description → it runs a keyword gap analysis and outputs a tailored `resume.json` ready to drop into `data/` and build.
+The intended flow: give the AI the guide + your master `resume.json` + the job description -> it runs a keyword gap analysis and outputs a tailored `resume.json` ready to drop into `data/` and build.
 
 ---
 
@@ -24,7 +24,7 @@ The intended flow: give the AI the guide + your master `resume.json` + the job d
 
 Your master `resume.json` should live somewhere outside this repo — a private gist, a personal vault, iCloud, wherever you keep things you don't want to lose. If you ever nuke this project or do a fresh clone, your data should be completely unaffected.
 
-The intended workflow is: pull from your master copy → drop into `data/` → build → take the PDF. This repo is the renderer, not the storage layer.
+The intended workflow is: pull from your master copy -> drop into `data/` -> build -> take the PDF. This repo is the renderer, not the storage layer.
 
 ---
 
@@ -55,11 +55,17 @@ Or manually:
 uv run src/build.py
 ```
 
-Output:
+Output filenames include the target company from `meta.target_company` in your `resume.json`:
 
 ```
-HTML → output/resume_Jun-05-2026_02-30-45-PM.html
-PDF  → output/resume_Jun-05-2026_02-30-45-PM.pdf
+HTML -> output/Resume_Stripe_Jun-06-2026_02-30-45-PM.html
+PDF  -> output/Resume_Stripe_Jun-06-2026_02-30-45-PM.pdf
+```
+
+To clean the `output/` folder:
+
+```bash
+./clean.sh
 ```
 
 ---
@@ -78,10 +84,12 @@ PDF  → output/resume_Jun-05-2026_02-30-45-PM.pdf
 ├── templates/
 │   └── resume.html.jinja   # HTML template
 ├── output/                 # Generated files (gitignored)
-├── quick-run.sh                  # Quick launch script
+├── quick-run.sh            # Quick launch script
+├── clean.sh                # Clears the output/ folder
 ├── Sample-Resume.pdf       # Sample output for reference
 ├── AI-Guide.md             # Prompt guide for AI-assisted resume tailoring
-└── pyproject.toml          # Dependency config — no need to edit
+├── pyproject.toml          # Dependency config — no need to edit
+└── uv.lock                 # Auto-generated lockfile — do not edit
 ```
 
 ---
