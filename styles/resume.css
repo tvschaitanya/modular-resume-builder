@@ -1,0 +1,234 @@
+/* ================================================
+   Resume Stylesheet
+   — Change variables only, never touch class rules
+   ================================================ */
+
+/* ── Design Tokens ──────────────────────────────── */
+:root {
+  /* Typography */
+  --font-body: "Times New Roman", Times, serif;
+  /* --font-body: Arial, Helvetica, sans-serif; */
+  --font-size-body: 11pt;
+  --font-size-name: 18pt;
+  --line-height: 1.15;
+  --color-text: #000;
+
+  /* Spacing */
+  --space-section: 8px;
+  --space-entry: 5px;
+  --space-exp: 5px;
+  --space-entry-top: 1px;
+
+  /* Divider */
+  --divider-color: #000;
+  --divider-gap: 3px;
+
+  /* Bullets */
+  --bullet-indent: 24px;
+  --bullet-gap: 1px;
+}
+
+/* ── Reset ──────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: var(--font-size-body);
+}
+
+/* ── Base ───────────────────────────────────────── */
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: var(--line-height);
+  padding-right: 4px; /* prevent right-edge clipping in Playwright PDF */
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+li,
+div,
+span,
+hr {
+  line-height: var(--line-height);
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Contact Header ─────────────────────────────── */
+.header {
+  text-align: center;
+  margin-bottom: var(--space-entry);
+}
+
+.header__name {
+  font-size: var(--font-size-name);
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.header__contact {
+  margin-top: 3px;
+}
+
+.header__contact a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* ── Section ────────────────────────────────────── */
+.section {
+  margin-bottom: var(--space-section);
+}
+
+.section__title {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.section__divider {
+  border: none;
+  border-top: 1px solid var(--divider-color);
+  margin-bottom: var(--divider-gap);
+}
+
+/* ── Two-column row (legacy flex, kept for reference) ── */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  overflow: visible;
+}
+
+.row > div,
+.row > span {
+  min-width: 0;
+}
+
+.row__date {
+  font-style: italic;
+  white-space: nowrap;
+  text-align: right;
+  flex-shrink: 0;
+  padding-right: 2px;
+}
+
+/* ── Table-based date row (ATS-safe) ────────────── */
+.row--abs {
+  display: table;
+  width: 100%;
+}
+
+.row--abs > span:first-child {
+  display: table-cell;
+}
+
+.row__date--abs {
+  display: table-cell;
+  font-style: italic;
+  white-space: nowrap;
+  text-align: right;
+  vertical-align: top;
+  padding-left: 8px;
+}
+
+/* ── Bullet Lists ───────────────────────────────── */
+.bullets {
+  list-style-type: disc;
+  padding-left: var(--bullet-indent);
+  margin-top: 2px;
+}
+
+.bullets li {
+  margin-bottom: var(--bullet-gap);
+}
+
+/* ── Skills ─────────────────────────────────────── */
+.skills {
+  list-style-type: disc;
+  padding-left: var(--bullet-indent);
+}
+
+.skills li {
+  margin-bottom: var(--bullet-gap);
+}
+
+/* ── Experience ─────────────────────────────────── */
+.exp {
+  margin-bottom: var(--space-exp);
+  page-break-inside: avoid;
+}
+
+.exp:last-child,
+.proj:last-child,
+.edu:last-child {
+  margin-bottom: 0;
+}
+
+.exp__title {
+  font-weight: bold;
+}
+
+.exp__meta {
+  font-style: italic;
+  font-weight: normal;
+}
+
+/* ── Projects ───────────────────────────────────── */
+.proj {
+  margin-bottom: var(--space-entry);
+  page-break-inside: avoid;
+}
+
+.proj__title {
+  font-weight: bold;
+}
+
+.proj__tech {
+  font-style: italic;
+  font-weight: normal;
+}
+
+/* ── Education ──────────────────────────────────── */
+.edu {
+  margin-bottom: var(--space-entry);
+  page-break-inside: avoid;
+}
+
+.edu__school {
+  font-weight: bold;
+}
+
+.edu__location {
+  font-weight: normal;
+  font-style: italic;
+}
+
+.edu__sub {
+  margin-top: var(--space-entry-top);
+}
+
+.edu__degree {
+  font-style: normal;
+  font-weight: normal;
+}
+
+.edu__gpa {
+  font-style: italic;
+  font-weight: normal;
+}
+
+/* ── Certifications ─────────────────────────────── */
+.cert {
+  font-weight: normal;
+}

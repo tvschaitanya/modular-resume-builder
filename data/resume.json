@@ -1,0 +1,121 @@
+{
+  "section_order": [
+    "summary",
+    "skills",
+    "experience",
+    "projects",
+    "education",
+    "certifications"
+  ],
+
+  "summary": "Software engineer with 5+ years of experience building scalable web applications and cloud infrastructure. Proven ability to lead cross-functional teams, deliver high-availability systems, and reduce operational costs through automation.",
+
+  "skills": [
+    {
+      "category": "Languages",
+      "list": ["Python", "JavaScript", "TypeScript", "SQL", "Bash"]
+    },
+    {
+      "category": "Frameworks & Libraries",
+      "list": ["React", "Node.js", "FastAPI", "Express"]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "list": [
+        "AWS",
+        "EC2",
+        "S3",
+        "Lambda",
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "category": "Databases",
+      "list": ["PostgreSQL", "MySQL", "Redis", "MongoDB"]
+    },
+    {
+      "category": "Tools",
+      "list": ["Git", "Jira", "Datadog", "PagerDuty"]
+    }
+  ],
+
+  "experience": [
+    {
+      "title": "Senior Software Engineer",
+      "company": "Acme Corporation",
+      "location": "San Francisco, CA",
+      "from": "03-2022",
+      "to": "Present",
+      "bullets": [
+        "Led migration of monolithic application to microservices architecture, reducing deployment time by 60% and improving system reliability to 99.9% uptime.",
+        "Designed and implemented a real-time data pipeline processing 500K+ events per day using AWS Lambda and SQS.",
+        "Mentored a team of 4 junior engineers, conducting weekly code reviews and establishing engineering best practices."
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Beta Technologies",
+      "location": "Austin, TX",
+      "from": "06-2019",
+      "to": "02-2022",
+      "bullets": [
+        "Built and maintained RESTful APIs serving 1M+ monthly active users using Node.js and PostgreSQL.",
+        "Automated infrastructure provisioning with Terraform, cutting environment setup time from 2 days to 30 minutes.",
+        "Reduced customer-reported bugs by 40% by introducing end-to-end testing with Cypress."
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Open Source CLI Tool",
+      "tech": "Python, Click, GitHub Actions",
+      "bullets": [
+        "Built a developer productivity CLI tool with 800+ GitHub stars, automating repetitive local dev workflows.",
+        "Published to PyPI with automated CI/CD releasing new versions on every tagged commit."
+      ]
+    },
+    {
+      "name": "Personal Finance Dashboard",
+      "tech": "React, FastAPI, PostgreSQL",
+      "bullets": [
+        "Developed a full-stack web app to track expenses and visualize spending trends with interactive charts."
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "degree": "Master of Science, Computer Science",
+      "school": "Stanford University",
+      "location": "Stanford, CA",
+      "from": "09-2017",
+      "to": "06-2019",
+      "gpa": "3.9"
+    },
+    {
+      "degree": "Bachelor of Science, Computer Science",
+      "school": "University of Texas at Austin",
+      "location": "Austin, TX",
+      "from": "08-2013",
+      "to": "05-2017",
+      "gpa": null
+    }
+  ],
+
+  "certifications": [
+    {
+      "name": "AWS Solutions Architect Associate",
+      "issuer": "Amazon Web Services",
+      "date": "2023"
+    },
+    {
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "issuer": "Cloud Native Computing Foundation",
+      "date": "2022"
+    }
+  ]
+}
