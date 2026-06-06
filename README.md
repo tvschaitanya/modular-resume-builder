@@ -39,14 +39,14 @@ The intended workflow is: pull from your master copy → drop into `data/` → b
 
 ## Setup
 
-Only one requirement — [uv](https://docs.astral.sh/uv/getting-started/installation/). Everything else including Python, dependencies, and Playwright's Chromium browser is handled automatically by `run.sh`.
+Only one requirement — [uv](https://docs.astral.sh/uv/getting-started/installation/). Everything else including Python, dependencies, and Playwright's Chromium browser is handled automatically by `quick-run.sh`.
 
 ---
 
 ## Usage
 
 ```bash
-./run.sh
+./quick-run.sh
 ```
 
 Or manually:
@@ -78,7 +78,7 @@ PDF  → output/resume_Jun-05-2026_02-30-45-PM.pdf
 ├── templates/
 │   └── resume.html.jinja   # HTML template
 ├── output/                 # Generated files (gitignored)
-├── run.sh                  # Quick launch script
+├── quick-run.sh                  # Quick launch script
 ├── Sample-Resume.pdf       # Sample output for reference
 ├── AI-Guide.md             # Prompt guide for AI-assisted resume tailoring
 └── pyproject.toml          # Dependency config — no need to edit
