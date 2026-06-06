@@ -12,20 +12,30 @@ fi
 echo "Syncing dependencies..."
 uv sync --quiet
 
-# ── Explicitly Activate the Environment ───────────────────────────────────
-# This ensures everything downstream runs in the exact same active context
-source .venv/bin/activate
+# ── Wait for venv to be ready ─────────────────────────────────────────────
+echo "Waiting for venv to be ready..."
+TIMEOUT=10
+ELAPSED=0
+until uv run python --version &> /dev/null; do
+    if [ "$ELAPSED" -ge "$TIMEOUT" ]; then
+        echo "Error: venv did not become ready within ${TIMEOUT}s. Aborting."
+        exit 1
+    fi
+    sleep 1
+    ELAPSED=$((ELAPSED + 1))
+done
+echo "venv is ready."
 
 # ── Playwright Chromium ───────────────────────────────────────────────────
-# We use the active python environment directly here to avoid nested 'uv run' calls
-if ! python -c "from playwright.sync_api import sync_playwright; p = sync_playwright().start(); p.stop()" &> /dev/null; then
+if ! uv run python -c "
+from playwright.sync_api import sync_playwright
+p = sync_playwright().start()
+p.stop()
+" &> /dev/null; then
     echo "Installing Playwright Chromium..."
-    playwright install chromium
+    uv run playwright install chromium
 fi
 
 # ── Build ─────────────────────────────────────────────────────────────────
 echo "Building resume..."
-python src/build.py
-
-# ── Clean up ──────────────────────────────────────────────────────────────
-deactivate
+uv run python src/build.py
