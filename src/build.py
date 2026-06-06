@@ -76,8 +76,8 @@ def main() -> None:
     html            = build_html(contact, resume)
 
     stamp    = datetime.now().strftime("%b-%d-%Y_%I-%M-%S-%p")
-    html_out = OUTPUT / f"resume_{stamp}.html"
-    pdf_out  = OUTPUT / f"resume_{stamp}.pdf"
+    html_out = OUTPUT / f"Resume_{stamp}.html"
+    pdf_out  = OUTPUT / f"Resume_{stamp}.pdf"
 
     html_out.write_text(html, encoding="utf-8")
     print(f"HTML → {html_out}  (open in browser to preview)")
